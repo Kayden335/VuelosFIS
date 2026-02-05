@@ -64,7 +64,7 @@ public class ControladorSeleccionVuelo implements ActionListener {
             System.out.println("Tipo: " + tipoViaje);
             System.out.println("Pasajeros: " + numPasajeros);
 
-            // Abrir vista de detalles
+            // Abrir vista de detalles de compra
             VistaDetallesCompra vdc = new VistaDetallesCompra();
             
             // Pasar TODOS los datos al siguiente controlador
@@ -72,8 +72,13 @@ public class ControladorSeleccionVuelo implements ActionListener {
             cdc.setTipoVuelo(tipoViaje);
             cdc.setVueloSeleccionado(vueloSeleccionado);
             
+            // Mostrar la nueva ventana
             vdc.setVisible(true);
-            vista.dispose(); // CERRAR VENTANA ACTUAL
+            
+            // Cerrar la ventana actual
+            vista.dispose();
+            
+            System.out.println("DEBUG: Ventana SeleccionVuelo cerrada, DetallesCompra abierto");
         }
     }
 }

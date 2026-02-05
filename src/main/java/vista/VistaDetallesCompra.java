@@ -341,16 +341,7 @@ public javax.swing.JTable getTblServicios() {
     }//GEN-LAST:event_BtnMaletasActionPerformed
 
     private void BtnSiguienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSiguienteActionPerformed
-     ModeloCarrito carrito = new ModeloCarrito(); // o el carrito que hayas creado en VistaDetallesCompra
-
-    // Crear la ventana del carrito
-    VistaCarrito vistaCarrito = new VistaCarrito(carrito);
-    
-    // Mostrar la ventana
-    vistaCarrito.setVisible(true);
-    
-    // Cerrar la ventana actual de detalles compra si quieres
-    this.dispose();
+     
     }//GEN-LAST:event_BtnSiguienteActionPerformed
 
     private void TxtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TxtNombreActionPerformed

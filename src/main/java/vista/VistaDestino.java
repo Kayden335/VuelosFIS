@@ -370,13 +370,7 @@ public class VistaDestino extends javax.swing.JFrame {
     }//GEN-LAST:event_txtTotalPasajerosActionPerformed
 
     private void btnBuscarVuelosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarVuelosActionPerformed
-  int totalPasajeros = Integer.parseInt(txtTotalPasajeros.getText());
-
-    VistaSeleccionVuelo v = new VistaSeleccionVuelo();
-    new ControladorSeleccionVuelo(v, totalPasajeros);
-    v.setVisible(true);
-
-    this.dispose();        
+   
     }//GEN-LAST:event_btnBuscarVuelosActionPerformed
 
     /**

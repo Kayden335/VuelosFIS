@@ -43,14 +43,14 @@ public class ControladorPago {
 
     private void irAPago() {
         System.out.println("DEBUG: Yendo a pago...");
-        vistaCarrito.setVisible(false);
-        vistaPago.setVisible(true);
+        vistaCarrito.dispose(); // CERRAR VistaCarrito
+        vistaPago.setVisible(true); // ABRIR VistaPago
     }
 
     private void volverACarrito() {
         System.out.println("DEBUG: Volviendo al carrito...");
-        vistaPago.setVisible(false);
-        vistaCarrito.setVisible(true);
+        vistaPago.dispose(); // CERRAR VistaPago
+        vistaCarrito.setVisible(true); // ABRIR VistaCarrito
     }
 
     private void procesarPago() {
@@ -162,9 +162,9 @@ public class ControladorPago {
         // Mostrar factura con TODOS los datos
         cFactura.mostrarFactura(usuario, datosPago, boletos, total);
         
-        // CERRAR VENTANAS ANTERIORES
+        // CERRAR VENTANA DE PAGO
         vistaPago.dispose();
-        vistaCarrito.dispose();
+        // NO es necesario cerrar vistaCarrito porque ya se cerró en irAPago()
         
         System.out.println("DEBUG: Flujo completo completado exitosamente!");
     }

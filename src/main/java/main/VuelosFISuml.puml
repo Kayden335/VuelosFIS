@@ -56,16 +56,15 @@ class Factura {
   +total: double
 }
 
-' ==== Zig-Zag fuerte ====
+
 Registro --> Destino
 Destino --> SeleccionVuelo
 
-SeleccionVuelo --> Asientos : elige
+Asientos <-- SeleccionVuelo
 Asientos --> DetallesCompra
 
 DetallesCompra --> Boletos
-Boletos --> Pago
+Pago <-- Boletos
 
 Pago --> Factura
-
 @enduml

@@ -190,13 +190,13 @@ public class ControladorDetallesCompras {
 
         switch (claseVuelo) {
             case "Económica":
-                datos = new Object[][]{{"Bebidas", "Sí"}, {"Boleto", "$100"}};
+                datos = new Object[][]{{"Bebidas", "Sí"}, {"Boleto", "$175.46"}};
                 break;
             case "Premium":
-                datos = new Object[][]{{"Comida", "Sí"}, {"Boleto", "$200"}};
+                datos = new Object[][]{{"Comida", "Sí"}, {"Boleto", "$210.46"}};
                 break;
             case "Ejecutiva":
-                datos = new Object[][]{{"Acceso VIP", "Sí"}, {"Boleto", "$300"}};
+                datos = new Object[][]{{"Acceso VIP", "Sí"}, {"Boleto", "$246.76"}};
                 break;
             default:
                 datos = new Object[][]{};
