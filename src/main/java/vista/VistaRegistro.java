@@ -1,0 +1,422 @@
+package vista;
+
+import modelo.ModeloRegistro;
+
+public class VistaRegistro extends javax.swing.JFrame {
+
+    public VistaRegistro() {
+        initComponents();
+        aplicarValidaciones();
+        setLocationRelativeTo(null);
+    }
+    
+    public javax.swing.JButton getBtnRegistrar() {
+    return btnRegistrar;
+}
+    
+    private void aplicarValidaciones() {
+
+        // Nombre: solo letras y espacios
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isLetter(c) && c != ' ') {
+                    e.consume();
+                }
+            }
+        });
+
+        // Apellido: solo letras y espacios
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isLetter(c) && c != ' ') {
+                    e.consume();
+                }
+            }
+        });
+
+        // Teléfono: solo números (máx 10)
+        txtTelefono.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) || txtTelefono.getText().length() >= 10) {
+                    e.consume();
+                }
+            }
+        });
+
+
+        // Cédula: solo números (máx 10)
+        txtCedula.addKeyListener(new java.awt.event.KeyAdapter() {
+            @Override
+            public void keyTyped(java.awt.event.KeyEvent e) {
+                char c = e.getKeyChar();
+                if (!Character.isDigit(c) || txtCedula.getText().length() >= 10) {
+                    e.consume();
+                }
+            }
+        });
+
+    }
+        
+    public boolean validarFormulario() {
+        if (txtNombre.getText().trim().isEmpty() ||
+    txtApellido.getText().trim().isEmpty() ||
+    txtEmail.getText().trim().isEmpty() ||
+    txtCedula.getText().trim().isEmpty() ||
+    txtTelefono.getText().trim().isEmpty() ||
+    txtPassword.getPassword().length == 0) {
+
+    mostrarMensaje("Debe llenar todos los campos");
+    return false;
+}
+         StringBuilder faltantes = new StringBuilder();
+
+        if (txtNombre.getText().trim().isEmpty()) {
+            faltantes.append("Nombre, ");
+        }
+
+        if (txtApellido.getText().trim().isEmpty()) {
+            faltantes.append("Apellido, ");
+        }
+
+        if (txtEmail.getText().trim().isEmpty()) {
+            faltantes.append("Email, ");
+        }
+
+        if (txtCedula.getText().trim().isEmpty()) {
+            faltantes.append("Cédula, ");
+        }
+
+        if (txtTelefono.getText().trim().isEmpty()) {
+            faltantes.append("Teléfono, ");
+        }
+
+        if (txtPassword.getPassword().length == 0) {
+            faltantes.append("Contraseña, ");
+        }
+
+        if (faltantes.length() > 0) {
+            // Quita la última coma y espacio
+            String campos = faltantes.substring(0, faltantes.length() - 2);
+            mostrarMensaje("Registro inválido.\nDebe completar: " + campos);
+            return false;
+        }
+        String email = txtEmail.getText().trim();
+
+        if (!email.matches("^[\\w.-]+@[\\w.-]+\\.[a-zA-Z]{2,}$")) {
+            mostrarMensaje("Email inválido");
+            return false;
+        }
+
+        if (txtCedula.getText().length() != 10) {
+            mostrarMensaje("La cédula debe tener 10 dígitos");
+            return false;
+        }
+
+        if (txtTelefono.getText().length() != 10) {
+            mostrarMensaje("El teléfono debe tener 10 dígitos");
+            return false;
+        }
+
+        if (txtPassword.getPassword().length < 6) {
+            mostrarMensaje("La contraseña debe tener mínimo 6 caracteres");
+            return false;
+        }
+
+        return true; // ✔️ Todo OK → puede registrarse
+    }
+
+
+
+    public ModeloRegistro getUsuarioDesdeFormulario() {
+        return new ModeloRegistro(
+            txtNombre.getText(),
+            txtApellido.getText(),
+            txtEmail.getText(),
+            txtCedula.getText(),
+            txtTelefono.getText(), 
+            txtPassword.getText());
+    }
+
+    public void limpiarFormulario() {
+        txtNombre.setText("");
+        txtApellido.setText("");
+        txtEmail.setText("");
+        txtCedula.setText("");
+        txtTelefono.setText("");
+        txtPassword.setText("");
+    }
+
+    public void mostrarMensaje(String msg) {
+        javax.swing.JOptionPane.showMessageDialog(this, msg);
+    }
+    
+    
+
+    
+    /**
+     * This method is called from within the constructor to initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is always
+     * regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
+    // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
+    private void initComponents() {
+
+        PanelPrincipal = new javax.swing.JPanel();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        PanelForm = new javax.swing.JPanel();
+        lblNombre = new javax.swing.JLabel();
+        txtNombre = new javax.swing.JTextField();
+        lblApellido = new javax.swing.JLabel();
+        txtApellido = new javax.swing.JTextField();
+        lblEmail = new javax.swing.JLabel();
+        lblCadula = new javax.swing.JLabel();
+        txtCedula = new javax.swing.JTextField();
+        lblTelefono = new javax.swing.JLabel();
+        txtTelefono = new javax.swing.JTextField();
+        lblPassword = new javax.swing.JLabel();
+        txtPassword = new javax.swing.JPasswordField();
+        jLabel1 = new javax.swing.JLabel();
+        txtEmail = new javax.swing.JTextField();
+        lbllogoRegistro = new javax.swing.JLabel();
+        btnRegistrar = new javax.swing.JButton();
+        lblFondo2 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+
+        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        PanelPrincipal.setBackground(new java.awt.Color(0, 204, 255));
+        PanelPrincipal.setOpaque(false);
+        PanelPrincipal.setLayout(null);
+
+        jLabel6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/VuelosFis.png"))); // NOI18N
+        PanelPrincipal.add(jLabel6);
+        jLabel6.setBounds(940, 70, 90, 80);
+
+        jLabel5.setFont(new java.awt.Font("SimSun", 1, 48)); // NOI18N
+        jLabel5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RegistroUnbanner.jpg"))); // NOI18N
+        jLabel5.setText("REGISTRO DE USUARIO");
+        jLabel5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jLabel5.setMaximumSize(new java.awt.Dimension(1030, 130));
+        jLabel5.setMinimumSize(new java.awt.Dimension(1030, 130));
+        PanelPrincipal.add(jLabel5);
+        jLabel5.setBounds(30, 50, 1020, 130);
+
+        PanelForm.setBackground(new java.awt.Color(102, 204, 255));
+        PanelForm.setLayout(null);
+
+        lblNombre.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        lblNombre.setForeground(new java.awt.Color(255, 255, 255));
+        lblNombre.setText("Nombre:");
+        PanelForm.add(lblNombre);
+        lblNombre.setBounds(420, 30, 160, 42);
+
+        txtNombre.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        txtNombre.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNombreActionPerformed(evt);
+            }
+        });
+        PanelForm.add(txtNombre);
+        txtNombre.setBounds(630, 30, 310, 40);
+
+        lblApellido.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        lblApellido.setForeground(new java.awt.Color(255, 255, 255));
+        lblApellido.setText("Apellido:");
+        PanelForm.add(lblApellido);
+        lblApellido.setBounds(420, 90, 220, 42);
+
+        txtApellido.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        txtApellido.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtApellidoActionPerformed(evt);
+            }
+        });
+        PanelForm.add(txtApellido);
+        txtApellido.setBounds(630, 90, 310, 40);
+
+        lblEmail.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        lblEmail.setForeground(new java.awt.Color(255, 255, 255));
+        lblEmail.setText("Email:");
+        PanelForm.add(lblEmail);
+        lblEmail.setBounds(420, 160, 170, 42);
+
+        lblCadula.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        lblCadula.setForeground(new java.awt.Color(255, 255, 255));
+        lblCadula.setText("Cédula:");
+        PanelForm.add(lblCadula);
+        lblCadula.setBounds(420, 220, 150, 42);
+
+        txtCedula.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        txtCedula.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCedulaActionPerformed(evt);
+            }
+        });
+        PanelForm.add(txtCedula);
+        txtCedula.setBounds(630, 220, 310, 40);
+
+        lblTelefono.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        lblTelefono.setForeground(new java.awt.Color(255, 255, 255));
+        lblTelefono.setText("Teléfono:");
+        PanelForm.add(lblTelefono);
+        lblTelefono.setBounds(420, 280, 190, 42);
+
+        txtTelefono.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        txtTelefono.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTelefonoActionPerformed(evt);
+            }
+        });
+        PanelForm.add(txtTelefono);
+        txtTelefono.setBounds(630, 280, 310, 40);
+
+        lblPassword.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        lblPassword.setForeground(new java.awt.Color(255, 255, 255));
+        lblPassword.setText("Contraseña:");
+        PanelForm.add(lblPassword);
+        lblPassword.setBounds(420, 340, 220, 42);
+
+        txtPassword.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        txtPassword.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPasswordActionPerformed(evt);
+            }
+        });
+        PanelForm.add(txtPassword);
+        txtPassword.setBounds(630, 340, 310, 40);
+
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 0, 20)); // NOI18N
+        jLabel1.setText("© 2026 VuelosFIS - Sistema de Gestión Aérea");
+        PanelForm.add(jLabel1);
+        jLabel1.setBounds(570, 410, 420, 27);
+
+        txtEmail.setFont(new java.awt.Font("SimSun", 1, 24)); // NOI18N
+        PanelForm.add(txtEmail);
+        txtEmail.setBounds(630, 160, 310, 40);
+
+        lbllogoRegistro.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbllogoRegistro.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Registro.png"))); // NOI18N
+        PanelForm.add(lbllogoRegistro);
+        lbllogoRegistro.setBounds(50, 30, 311, 316);
+
+        btnRegistrar.setFont(new java.awt.Font("SimSun", 1, 36)); // NOI18N
+        btnRegistrar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/Botonbase.jpg"))); // NOI18N
+        btnRegistrar.setText("Registrar");
+        btnRegistrar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        btnRegistrar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnRegistrarActionPerformed(evt);
+            }
+        });
+        PanelForm.add(btnRegistrar);
+        btnRegistrar.setBounds(150, 370, 210, 50);
+
+        lblFondo2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RegistroCuadricula.jpg"))); // NOI18N
+        lblFondo2.setText("jLabel4");
+        PanelForm.add(lblFondo2);
+        lblFondo2.setBounds(0, 0, 1020, 460);
+
+        PanelPrincipal.add(PanelForm);
+        PanelForm.setBounds(30, 200, 1020, 460);
+
+        jLabel4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/Imagenes/RegistroPanel.jpg"))); // NOI18N
+        PanelPrincipal.add(jLabel4);
+        jLabel4.setBounds(0, 0, 1080, 740);
+
+        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
+        getContentPane().setLayout(layout);
+        layout.setHorizontalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 1071, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+        layout.setVerticalGroup(
+            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(PanelPrincipal, javax.swing.GroupLayout.PREFERRED_SIZE, 687, javax.swing.GroupLayout.PREFERRED_SIZE)
+        );
+
+        pack();
+    }// </editor-fold>//GEN-END:initComponents
+
+    private void txtPasswordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPasswordActionPerformed
+        String password = new String(txtPassword.getPassword());
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPasswordActionPerformed
+
+    private void txtTelefonoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTelefonoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTelefonoActionPerformed
+
+    private void txtCedulaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCedulaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCedulaActionPerformed
+
+    private void txtApellidoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtApellidoActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtApellidoActionPerformed
+
+    private void txtNombreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNombreActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNombreActionPerformed
+
+    private void btnRegistrarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRegistrarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnRegistrarActionPerformed
+
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String args[]) {
+        /* Set the Nimbus look and feel */
+        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
+        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         */
+        try {
+            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
+                if ("Nimbus".equals(info.getName())) {
+                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
+                    break;
+                }
+            }
+        } catch (ReflectiveOperationException | javax.swing.UnsupportedLookAndFeelException ex) {
+            ex.printStackTrace();
+}
+
+        //</editor-fold>
+
+        /* Create and display the form */
+        java.awt.EventQueue.invokeLater(() -> new VistaRegistro().setVisible(true));
+    }
+
+    // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JPanel PanelForm;
+    private javax.swing.JPanel PanelPrincipal;
+    private javax.swing.JButton btnRegistrar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
+    private javax.swing.JLabel lblApellido;
+    private javax.swing.JLabel lblCadula;
+    private javax.swing.JLabel lblEmail;
+    private javax.swing.JLabel lblFondo2;
+    private javax.swing.JLabel lblNombre;
+    private javax.swing.JLabel lblPassword;
+    private javax.swing.JLabel lblTelefono;
+    private javax.swing.JLabel lbllogoRegistro;
+    private javax.swing.JTextField txtApellido;
+    private javax.swing.JTextField txtCedula;
+    private javax.swing.JTextField txtEmail;
+    private javax.swing.JTextField txtNombre;
+    private javax.swing.JPasswordField txtPassword;
+    private javax.swing.JTextField txtTelefono;
+    // End of variables declaration//GEN-END:variables
+}

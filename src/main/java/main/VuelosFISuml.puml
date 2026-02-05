@@ -1,0 +1,71 @@
+@startuml
+title Flujo UML - Sistema VuelosFIS (Zig-Zag Compacto)
+
+class Registro {
+  +nombre: String
+  +apellido: String
+  +email: String
+  +cedula: String
+  +telefono: String
+  +password: String
+}
+
+class Destino {
+  +ciudadOrigen: String
+  +ciudadDestino: String
+  +fechaIda: Date
+  +fechaRegreso: Date
+  +numPasajeros: int
+  +tipoPasajero: String
+}
+
+class SeleccionVuelo {
+  +horario: String
+  +tipoViaje: String
+  +tarifa: String
+}
+
+class Asientos {
+  +asientosDisponibles: List
+  +asientosSeleccionados: List
+}
+
+class DetallesCompra {
+  +nombrePasajero: String
+  +cedula: String
+  +pasaporte: String
+  +claseVuelo: String
+  +maletas: int
+  +vueloRegreso: boolean
+}
+
+class Boletos {
+  +codigo: String
+  +precio: double
+  +clase: String
+}
+
+class Pago {
+  +metodoPago: String
+  +montoTotal: double
+}
+
+class Factura {
+  +ticket: String
+  +fecha: Date
+  +total: double
+}
+
+' ==== Zig-Zag fuerte ====
+Registro --> Destino
+Destino --> SeleccionVuelo
+
+SeleccionVuelo --> Asientos : elige
+Asientos --> DetallesCompra
+
+DetallesCompra --> Boletos
+Boletos --> Pago
+
+Pago --> Factura
+
+@enduml
