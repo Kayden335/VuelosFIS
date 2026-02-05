@@ -154,32 +154,37 @@ public class ControladorDetallesCompras {
     }
     
     private void irACarrito() {
-        System.out.println("DEBUG: Intentando ir al carrito...");
-        System.out.println("DEBUG: Pasajeros registrados: " + compra.getPasajerosIngresados() + "/" + numPasajeros);
-        
-        if (compra.estaCompleta()) {
-            ModeloCarrito carrito = new ModeloCarrito();
-            for (ModeloBoleto b : compra.getBoletos()) {
-                carrito.agregar(b);
-            }
-            
-            System.out.println("DEBUG: Carrito creado con " + carrito.getBoletos().size() + " boletos");
-            
-            VistaCarrito vistaCarrito = new VistaCarrito(carrito);
-            ControladorPago controladorPago = new ControladorPago(carrito, usuario);
-            
-            vistaCarrito.setVisible(true);
-            vista.dispose(); // CERRAR VENTANA ACTUAL
-            
-            System.out.println("DEBUG: Ventana DetallesCompra cerrada, Carrito abierto");
-        } else {
-            JOptionPane.showMessageDialog(vista, 
-                "Debe registrar información para todos los " + numPasajeros + " pasajeros primero.");
-            JOptionPane.showMessageDialog(vista, 
-                "Registrados: " + compra.getPasajerosIngresados() + " de " + numPasajeros);
+    System.out.println("DEBUG: Intentando ir al carrito...");
+    System.out.println("DEBUG: Pasajeros registrados: " + compra.getPasajerosIngresados() + "/" + numPasajeros);
+    
+    if (compra.estaCompleta()) {
+        ModeloCarrito carrito = new ModeloCarrito();
+        for (ModeloBoleto b : compra.getBoletos()) {
+            carrito.agregar(b);
         }
+        
+        System.out.println("DEBUG: Carrito creado con " + carrito.getBoletos().size() + " boletos");
+        
+        // 1. Crear la vista del carrito
+        VistaCarrito vistaCarrito = new VistaCarrito(carrito);
+        
+        // 2. Crear ControladorPago PASANDO la vista ya creada
+        ControladorPago controladorPago = new ControladorPago(carrito, usuario, vistaCarrito);
+        
+        // 3. Mostrar SOLO la vista del carrito
+        vistaCarrito.setVisible(true);
+        
+        // 4. Cerrar detalles compra
+        vista.dispose();
+        
+        System.out.println("DEBUG: Ventana DetallesCompra cerrada, Carrito abierto");
+    } else {
+        JOptionPane.showMessageDialog(vista, 
+            "Debe registrar información para todos los " + numPasajeros + " pasajeros primero.");
+        JOptionPane.showMessageDialog(vista, 
+            "Registrados: " + compra.getPasajerosIngresados() + " de " + numPasajeros);
     }
-
+}
     private boolean cedulaValida(String cedula) {
         return cedula.matches("\\d{10,11}");
     }

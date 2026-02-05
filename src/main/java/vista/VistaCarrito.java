@@ -207,11 +207,7 @@ public class VistaCarrito extends javax.swing.JFrame {
     }//GEN-LAST:event_btnEliminarActionPerformed
 
     private void btnContinuarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnContinuarActionPerformed
-    VistaPago vistaPago = new VistaPago();
-    vistaPago.setCarrito(this.carrito);  // Necesitas crear este método setter
-    vistaPago.setVisible(true);
-    this.dispose();;
-
+ 
     
     }//GEN-LAST:event_btnContinuarActionPerformed
 
